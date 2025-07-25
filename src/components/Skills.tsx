@@ -9,6 +9,7 @@ const Skills = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.disconnect(); // disconnect to avoid repeated triggers
         }
       },
       { threshold: 0.3 }
@@ -19,7 +20,15 @@ const Skills = () => {
       observer.observe(element);
     }
 
-    return () => observer.disconnect();
+    // Fallback for mobile where IntersectionObserver may not trigger
+    const mobileFallback = setTimeout(() => {
+      setIsVisible(true);
+    }, 1500);
+
+    return () => {
+      clearTimeout(mobileFallback);
+      observer.disconnect();
+    };
   }, []);
 
   const skillCategories = [
@@ -106,7 +115,7 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="skills" className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-800 scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           {/* Section Header */}
@@ -125,9 +134,7 @@ const Skills = () => {
             {skillCategories.map((category, categoryIndex) => (
               <div
                 key={category.title}
-                className={`bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg border ${
-                  getColorClasses(category.color).split(' ').slice(2).join(' ')
-                } hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1`}
+                className={`bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-lg border ${getColorClasses(category.color).split(' ').slice(2).join(' ')} hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1`}
               >
                 {/* Category Header */}
                 <div className="flex items-center mb-6">
@@ -156,6 +163,7 @@ const Skills = () => {
                           className={`h-2 bg-gradient-to-r ${getColorClasses(category.color).split(' ').slice(0, 2).join(' ')} rounded-full transition-all duration-1000 ease-out`}
                           style={{
                             width: isVisible ? `${skill.level}%` : '0%',
+                            minWidth: isVisible ? '1%' : '0%',
                             transitionDelay: `${(categoryIndex * 200) + (skillIndex * 100)}ms`
                           }}
                         ></div>
