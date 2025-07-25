@@ -1,4 +1,4 @@
-import { Heart, ArrowUp } from 'lucide-react';
+import {ArrowUp } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -61,8 +61,7 @@ const Footer = () => {
           {/* Bottom Section */}
           <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center">
             <div className="flex items-center space-x-1 text-gray-400 mb-4 sm:mb-0">
-              <span>Made with</span>
-              <Heart className="h-4 w-4 text-red-500 fill-current" />
+              <span>Made</span>
               <span>by Pralayesh Mukherjee</span>
             </div>
             
