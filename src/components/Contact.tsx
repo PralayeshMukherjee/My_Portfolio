@@ -12,7 +12,8 @@ const Contact = () => {
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    access_key: `${import.meta.env.VITE_WEB3FORMS_ACCESS_KEY}`
   });
 
   const handleChange = (
@@ -24,7 +25,7 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     if (!form.current){
@@ -32,24 +33,35 @@ const Contact = () => {
       setLoading(false);
       return;
     }
-
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID!,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID!,
-        form.current,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
-      )
-      .then(() => {
-        toast.success('✅ Email sent successfully!');
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('EmailJS error:', error);
-        toast.error('❌ Failed to send email.');
-        setLoading(false);
+    try{
+      const formPayload = new FormData();
+      Object.entries(formData).forEach(([key, value]) => {
+        formPayload.append(key, value);
       });
+
+      const response = await fetch(`${import.meta.env.VITE_WEB3FORMS_URL}`, {
+        method: "POST",
+        body: formPayload
+      });
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        toast.success('✅ Email sent successfully!');
+        setFormData({ 
+          name: '', 
+          email: '', 
+          subject: '', 
+          message: '', 
+          access_key: `${import.meta.env.VITE_WEB3FORMS_ACCESS_KEY}` 
+        });
+        setLoading(false);
+      }
+    }catch(error){
+      console.error('EmailJS error:', error);
+      toast.error('❌ Failed to send email.');
+      setLoading(false);
+    }
   };
 
   return (
