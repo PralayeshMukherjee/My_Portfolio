@@ -35,7 +35,26 @@ const Projects = () => {
       demo: 'https://fire-fly-theta.vercel.app/',
       gradient: 'from-green-500 to-blue-600',
       icon: <Bot className="h-6 w-6" />
-    }
+    },
+    {
+      title: 'DeepThreat – Smart Cybersecurity Platform',
+      description: 'Advanced web platform that scans URLs and documents in real time using AI-powered analysis and 100+ security engines.',
+      duration: 'AUG 2025 - OCT 2025',
+      role: 'Full Stack Development | React (Vite) & Spring Boot',
+      features: [
+        'URL Scanner: Detects if a URL is Safe, Suspicious, or Malicious using custom algorithms and third-party APIs',
+        'Document Scanner: Upload and analyze files (PDF, DOC, JPG, etc.) for hidden malware or threats',
+        'Secure Authentication: Google OAuth 2.0 login with JWT-based authorization',
+        'AI-Powered Threat Analysis: Combines DeepThreat’s engine with 100+ third-party algorithms for detailed security reports',
+        'User-Friendly Dashboard: React + Tailwind UI with charts, pie visualizations, and reports'
+      ],
+      technologies: ['React (Vite)', 'Tailwind CSS', 'Spring Boot', 'MySQL', 'OAuth 2.0', 'JWT', 'AI', 'Third-Party Security APIs'],
+      github: 'https://github.com/PralayeshMukherjee/DeepThreat',
+      demo: 'https://deepthreat.vercel.app/',
+      gradient: 'from-purple-600 to-red-600',
+      icon: <Bot className="h-6 w-6" />
+}
+
   ];
 
   return (

@@ -74,7 +74,7 @@ const About = () => {
                     </h4>
                     <p className="text-blue-600 dark:text-blue-400 font-medium">Techno India University</p>
                     <p className="text-gray-600 dark:text-gray-400">2023 - 2027</p>
-                    <p className="text-lg font-semibold text-green-600 dark:text-green-400">CGPA: 8.8</p>
+                    <p className="text-lg font-semibold text-green-600 dark:text-green-400">CGPA: 9.07</p>
                   </div>
                 </div>
               </div>
