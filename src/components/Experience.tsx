@@ -166,7 +166,7 @@ const Experience = () => {
                     <h4 className="font-semibold text-gray-900 dark:text-white">LeetCode Consistency</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Daily problem solving</p>
                   </div>
-                  <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">365 days</div>
+                  <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">500 days</div>
                 </div>
               </div>
             </div>
